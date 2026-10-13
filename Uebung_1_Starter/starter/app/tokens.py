@@ -10,13 +10,18 @@ Aufruf:
 
 from llm import MODEL, client
 
+#TEXTE = {
+#    "Deutsch": "Wie melde ich mich im Studiengang Angewandte Informatik "
+#               "für die Prüfung in Mathematik 3 an, und bis wann ist "
+#               "die Anmeldefrist?",
+#    "Englisch": "How do I register for the Mathematics 3 exam in the "
+#                "Applied Computer Science program, and what is the "
+#                "registration deadline?",
+#}
 TEXTE = {
-    "Deutsch": "Wie melde ich mich im Studiengang Angewandte Informatik "
-               "für die Prüfung in Mathematik 3 an, und bis wann ist "
-               "die Anmeldefrist?",
-    "Englisch": "How do I register for the Mathematics 3 exam in the "
-                "Applied Computer Science program, and what is the "
-                "registration deadline?",
+    "Deutsch": "Gilt die Prüfungsordnungsänderung bezüglich der Studienbeitragsrückerstattung und der Lehrveranstaltungsabmeldefrist auch bei einem Prüfungsanmeldungsfristversäumnis im Zweitwiederholungsversuch?",
+    "Englisch": "Does the examination regulations amendment regarding tuition fee refunds and the course deregistration deadline also apply to a missed examination registration deadline on the second retake attempt?"
+
 }
 
 

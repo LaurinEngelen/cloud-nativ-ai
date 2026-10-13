@@ -13,9 +13,14 @@ from llm import MODEL, frage
 TEMPERATUREN = [0.0, 0.7, 1.2]
 DURCHLAEUFE = 5
 
+# prompt = " ".join(sys.argv[1:]) or (
+#    "Erfinde einen Namen für ein neues Gericht in der Mensa. "
+#    "Antworte nur mit dem Namen."
+#)
+
 prompt = " ".join(sys.argv[1:]) or (
-    "Erfinde einen Namen für ein neues Gericht in der Mensa. "
-    "Antworte nur mit dem Namen."
+    "Ist die HTWG Konstanz eine private oder staatliche Hochschule? "
+    "Antworte mit einem Satz."
 )
 
 print(f"Modell: {MODEL}\nPrompt: {prompt}\n")

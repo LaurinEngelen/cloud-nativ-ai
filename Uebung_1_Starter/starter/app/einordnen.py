@@ -51,14 +51,32 @@ def einordnen(mail: str, versuche: int = 3) -> Anfrage:
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": mail},
     ]
-    # TODO 1: Ruft das Modell auf. Wählt eine passende temperature
-    #         und übergebt response_format=schema_von(Anfrage).
-    # TODO 2: Prüft die Antwort mit Anfrage.model_validate_json(...).
-    # TODO 3: Schlägt die Prüfung fehl (ValidationError), versucht es
+    # 1: Ruft das Modell auf. Wählt eine passende temperature
+    #    und übergebt response_format=schema_von(Anfrage).
+
+    for versuch in range(1, versuche + 1):
+        try:
+            antwort = client.chat.completions.create(
+                model=MODEL,
+                temperature=0, 
+                messages=nachricht,
+                # response_format=schema_von(Anfrage),
+            )
+
+    # 2: Prüft die Antwort mit Anfrage.model_validate_json(...).
+
+            return Anfrage.model_validate_json(antwort.choices[0].message.content)
+
+    # 3: Schlägt die Prüfung fehl (ValidationError), versucht es
     #         erneut, höchstens `versuche`-mal. Gebt bei jedem
     #         Fehlversuch eine kurze Meldung aus. Klappt es gar
     #         nicht, werft einen RuntimeError.
-    raise NotImplementedError("TODO: einordnen() umsetzen")
+
+        except ValidationError as e:
+            print(f"Versuch {versuch}/{versuche} fehlgeschlagen: {e}")
+
+    raise RuntimeError(f"Konnte nach {versuche} Versuchen nicht verarbeitet werden.")
+
 
 
 def auswerten() -> None:
@@ -68,9 +86,17 @@ def auswerten() -> None:
     richtig = 0
     for fall in faelle:
         ergebnis = einordnen(fall["mail"])
-        # TODO 4: Vergleicht ergebnis mit fall["erwartet"]. Zählt einen
+
+        # 4: Vergleicht ergebnis mit fall["erwartet"]. Zählt einen
         #         Fall als richtig, wenn das Anliegen stimmt. Gebt für
         #         jeden Fall Mail, Ergebnis und ✓ oder ✗ aus.
+
+        if ergebnis.anliegen == fall["erwartet"]["anliegen"]:
+            richtig += 1
+        print(f"Mail: {fall['mail']}")
+        print(f"Ergebnis: {ergebnis}")
+        print(f"Erwartet: {fall['erwartet']}")
+        print("✓\n" if ergebnis.anliegen == fall["erwartet"]["anliegen"] else "✗\n")
     print(f"\n{richtig} von {len(faelle)} Anliegen richtig ({MODEL})")
 
 
