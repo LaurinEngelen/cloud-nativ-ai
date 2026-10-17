@@ -1,6 +1,6 @@
 ## Namen:
 - Laurin Engelen Matrikelnr: 310363
-- Emilia Bollenbeck Matrikelnr: 
+- Emilia Bollenbeck Matrikelnr: 310831
 
 ## Start:
 
@@ -10,7 +10,7 @@
 1. Lest compose.yaml , app/llm.py und app/hallo_llm.py . Beschreibt im README in drei, vier
 Sätzen: Welche Container laufen, und wie findet die Anwendung das Modell?
 
-> Die Docker compose verwaltet drei Container, die die App, das lokale Modell und den initialisierungsprozess des Modells beinhalten. Der Ordner /app wird als volume eingebunden, damit darauf während der Laufzeit des Containers zugegriffen werden kann. In den Python-scripts wird auf die Modell über die in der .env Bereitgestellten Umgebungsvariablen zugegriffen. Diese enthält die Base URL, das Model (und den API Key) des LLM. Diese werden dann in der OpenAI-Klasse verwendet um Anfragen an das LLM zu stellen.
+> Die Docker compose verwaltet drei Container, die die App, das lokale Modell und den initialisierungsprozess des Modells beinhalten. Der Ordner /app wird als volume eingebunden, damit darauf während der Laufzeit des Containers zugegriffen werden kann. In den Python-scripts wird auf das Modell über die in der .env Bereitgestellten Umgebungsvariablen zugegriffen. Diese enthält die Base URL, das Model (und den API Key) des LLM. Diese werden dann in der OpenAI-Klasse verwendet um Anfragen an das LLM zu stellen.
 
 2. Stellt drei verschiedene Fragen an den Campus-Assistenten. Notiert jeweils Time to First Token
 und Gesamtdauer.
